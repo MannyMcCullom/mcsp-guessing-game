@@ -4,6 +4,12 @@ const num = 5;
 let numOfGuesses = 0;
 let guesses = [];
 
+function playAgain(){
+numOfGuesses = 0;
+guesses = [];
+guessAgain(name);
+}
+
 function getName() {
     return prompt('Hello. Please enter your name.');
 }
@@ -14,10 +20,16 @@ function guessAgain(name) {
         numOfGuesses++;
         if (guess == num) {
             if (numOfGuesses == 1) {
-                return alert(`You got it ${name}. In ${numOfGuesses} guess.`);
+                alert(`You got it ${name}. In ${numOfGuesses} guess.`);
             }
             if (numOfGuesses > 1) {
-                return alert(`You got it ${name}. In ${numOfGuesses} guesses.\nYour previous guesses were ${guesses}.`);
+                alert(`You got it ${name}. In ${numOfGuesses} guesses.\nYour previous guesses were ${guesses}.`);
+            }
+            let answer = prompt(`${name}, Do you want to play again? y or n.`);
+            if (answer.toLowerCase() == 'y') {
+                return playAgain();
+            } else {
+                return alert(`Thanks for playing ${name}.`)
             }
         } else {
             if (guess < num) {
